@@ -43,9 +43,11 @@ url = "https://www.bloomberg.com/lineup-next/api/paginate"
 
 # 🔹 Cấu hình request
 headers = {
-    "User-Agent": "Mozilla/5.0",
-    "Accept": "application/json",
-    "Referer": "https://www.bloomberg.com/"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "https://www.bloomberg.com/",
+    "Origin": "https://www.bloomberg.com",
+    "Connection": "keep-alive"
 }
 offsets = [0, 12, 24, 36]
 all_data = []
@@ -59,7 +61,7 @@ for offset in offsets:
         "variation": "archive",
         "type": "lineup_content"
     }
-    response = requests.get(url, params=params, headers=get_headers())
+    response = requests.get(url, params=params, headers=headers)
     if response.status_code != 200:
         print(f"Lỗi khi request tại offset {offset}: {response.status_code}")
         continue
